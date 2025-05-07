@@ -1,0 +1,12 @@
+<services>
+	<service name="obs_scm">
+		<param name="url">https://github.com/tdlib/td.git</param>
+		<param name="scm">git</param>
+		<param name="revision">master</param>
+		<param name="versionformat">@PARENT_TAG@.%ct</param>
+	</service>
+	<service name="download_url">
+		<param name="url">https://src.fedoraproject.org/rpms/tdlib/raw/rawhide/f/tdlib.spec</param>
+	</service>
+	<service name="set_version" />
+</services>
