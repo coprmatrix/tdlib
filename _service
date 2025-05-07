@@ -8,5 +8,5 @@
 	<service name="download_url">
 		<param name="url">https://src.fedoraproject.org/rpms/tdlib/raw/rawhide/f/tdlib.spec</param>
 	</service>
-	<service name="set_version" />
+	<service name="set_version" mode="buildtime" />
 </services>
