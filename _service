@@ -6,10 +6,10 @@
 		<param name="versionformat">@PARENT_TAG@.%ct</param>
 		<param name="filename">tdlib</param>
 	</service>
-        <service name="download_url">
-                <param name="url">https://src.fedoraproject.org/rpms/tdlib/raw/rawhide/f/tdlib.spec</param>
-        </service>
-	<service name="set_version" />
+	<service name="download_url">
+		<param name="url">https://src.fedoraproject.org/rpms/tdlib/raw/rawhide/f/tdlib.spec</param>
+	</service>
+	<service name="set_version" mode="buildtime" />
 	<service name="tar" mode="buildtime" />
 	<service name="recompress" mode="buildtime">
 		<param name="file">*.tar</param>
