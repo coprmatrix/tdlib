@@ -5,6 +5,7 @@
 		<param name="revision">master</param>
 		<param name="versionformat">@PARENT_TAG@.%ct</param>
 		<param name="filename">tdlib</param>
+		<param name="versionrewrite-pattern">v(.*)</param>
 	</service>
 	<service name="download_url">
 		<param name="url">https://src.fedoraproject.org/rpms/tdlib/raw/rawhide/f/tdlib.spec</param>
