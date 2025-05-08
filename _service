@@ -6,7 +6,7 @@
 		<param name="versionformat">@PARENT_TAG@.%ct</param>
 		<param name="filename">tdlib</param>
 	</service>
-	<service name="set_version" mode="buildtime" />
+	<service name="set_version" />
 	<service name="tar" mode="buildtime" />
 	<service name="recompress" mode="buildtime">
 		<param name="file">*.tar</param>
