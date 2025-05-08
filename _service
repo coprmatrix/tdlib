@@ -7,9 +7,9 @@
 		<param name="filename">tdlib</param>
 		<param name="versionrewrite-pattern">v(.*)</param>
 	</service>
-	<service name="download_url">
+	<!--service name="download_url">
 		<param name="url">https://src.fedoraproject.org/rpms/tdlib/raw/rawhide/f/tdlib.spec</param>
-	</service>
+	</service-->
 	<service name="set_version" mode="buildtime" />
 	<service name="tar" mode="buildtime" />
 	<service name="recompress" mode="buildtime">
