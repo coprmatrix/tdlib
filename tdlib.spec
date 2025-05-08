@@ -5,7 +5,8 @@ Release: 7%{?dist}
 License: BSL-1.0
 URL: https://github.com/%{name}/td
 Summary: Cross-platform library for building Telegram clients
-Source0: %{url}/archive/v%{version}/%{name}-%{version}.tar.gz
+#Source0: %{url}/archive/v%{version}/
+Source0: %{name}-%{version}.tar.gz
 
 BuildRequires: gperftools-devel
 BuildRequires: openssl-devel
