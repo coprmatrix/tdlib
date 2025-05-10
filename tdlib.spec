@@ -49,20 +49,22 @@ Requires: %{name}-devel%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
 sed -e 's/"DEFAULT"/"PROFILE=SYSTEM"/g' -i tdnet/td/net/SslStream.cpp
 
 %build
-%{set_build_flags}
-%__cmake \
-        %{!?__cmake_in_source_build:-S "%{_vpath_srcdir}"} \
-        %{!?__cmake_in_source_build:-B "%{__cmake_builddir}"} \
-    -DCMAKE_INSTALL_DO_STRIP:BOOL=OFF -DCMAKE_INSTALL_PREFIX:PATH=%{_prefix} -DCMAKE_INSTALL_FULL_SBINDIR:PATH=%{_bindir} -DCMAKE_INSTALL_SBINDIR:PATH=`basename %{_bindir}` -DINCLUDE_INSTALL_DIR:PATH=%{_includedir} -DLIB_INSTALL_DIR:PATH=%{_libdir} -DSYSCONF_INSTALL_DIR:PATH=%{_sysconfdir} -DSHARE_INSTALL_PREFIX:PATH=%{_datadir} -DBUILD_SHARED_LIBS:BOOL=ON -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_LIBDIR=%{_libdir}
-
-
+%cmake \
+    -DCMAKE_INSTALL_DO_STRIP:BOOL=OFF -DCMAKE_INSTALL_PREFIX:PATH=%{_prefix} \
+    -DCMAKE_INSTALL_FULL_SBINDIR:PATH=%{_bindir} \
+    -DCMAKE_INSTALL_SBINDIR:PATH=`basename %{_bindir}` \
+    -DINCLUDE_INSTALL_DIR:PATH=%{_includedir} \
+    -DLIB_INSTALL_DIR:PATH=%{_libdir} \
+    -DSYSCONF_INSTALL_DIR:PATH=%{_sysconfdir} \
+    -DSHARE_INSTALL_PREFIX:PATH=%{_datadir} \
+    -DBUILD_SHARED_LIBS:BOOL=ON \
     -DCMAKE_BUILD_TYPE=Release \
-    -DCMAKE_INSTALL_LIBDIR=%{_lib} \
+    -DCMAKE_INSTALL_LIBDIR=%{_libdir} \
+    -DCMAKE_BUILD_TYPE=Release \
     -DCMAKE_INSTALL_INCLUDEDIR=%{_includedir} \
     -DCMAKE_INSTALL_BINDIR=%{_bindir} \
     -DTD_ENABLE_JNI:BOOL=ON \
     -DTD_ENABLE_DOTNET:BOOL=OFF \
-    -DCMAKE_INSTALL_DO_STRIP:BOOL=OFF \
     -DLIB_SUFFIX=64 \
     -DBUILD_SHARED_LIBS:BOOL=ON \
     -DTD_INSTALL_STATIC_LIBRARIES:BOOL=ON \
