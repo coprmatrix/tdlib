@@ -81,6 +81,7 @@ sed -e 's/"DEFAULT"/"PROFILE=SYSTEM"/g' -i tdnet/td/net/SslStream.cpp
 %{_libdir}/lib*.so.*
 
 %files devel
+%{_bindir}/td*
 %{_includedir}/td
 %{_libdir}/lib*.so
 %{_libdir}/cmake/*
