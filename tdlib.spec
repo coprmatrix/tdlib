@@ -16,6 +16,7 @@ BuildRequires: gcc-c++
 BuildRequires: gperf
 BuildRequires: cmake
 BuildRequires: gcc
+BuildRequires: java-devel
 
 Provides: bundled(sqlite) = 3.31.0
 
