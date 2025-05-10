@@ -48,11 +48,22 @@ Requires: %{name}-devel%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
 sed -e 's/"DEFAULT"/"PROFILE=SYSTEM"/g' -i tdnet/td/net/SslStream.cpp
 
 %build
-%cmake -G Ninja \
+%{set_build_flags}
+%__cmake \
+        %{!?__cmake_in_source_build:-S "%{_vpath_srcdir}"} \
+        %{!?__cmake_in_source_build:-B "%{__cmake_builddir}"} \
     -DCMAKE_BUILD_TYPE=Release \
     -DCMAKE_INSTALL_LIBDIR=%{_lib} \
-    -DTD_ENABLE_JNI:BOOL=OFF \
-    -DTD_ENABLE_DOTNET:BOOL=OFF
+    -DCMAKE_INSTALL_INCLUDEDIR=%{_includedir} \
+    -DCMAKE_INSTALL_BINDIR=%{_bindir} \
+    -DTD_ENABLE_JNI:BOOL=ON \
+    -DTD_ENABLE_DOTNET:BOOL=ON \
+    -DCMAKE_INSTALL_DO_STRIP:BOOL=OFF \
+    -DLIB_SUFFIX=64 \
+    -DBUILD_SHARED_LIBS:BOOL=ON \
+    -DTD_INSTALL_STATIC_LIBRARIES:BOOL=ON \
+    -DTD_INSTALL_SHARED_LIBRARIES:BOOL=ON
+
 %cmake_build
 
 %install
@@ -61,13 +72,13 @@ sed -e 's/"DEFAULT"/"PROFILE=SYSTEM"/g' -i tdnet/td/net/SslStream.cpp
 %files
 %license LICENSE_1_0.txt
 %doc README.md CHANGELOG.md
-%{_libdir}/libtd*.so.*
+%{_libdir}/lib*.so.*
 
 %files devel
 %{_includedir}/td
-%{_libdir}/libtd*.so
-%{_libdir}/cmake/Td
-%{_libdir}/pkgconfig/td*.pc
+%{_libdir}/lib*.so
+%{_libdir}/cmake/*
+%{_libdir}/pkgconfig/*.pc
 
 %files static
-%{_libdir}/libtd*.a
+%{_libdir}/lib*.a
