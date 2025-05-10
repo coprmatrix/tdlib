@@ -1,6 +1,6 @@
 Name: tdlib
-Version: 1.8.0
-Release: 7%{?dist}
+Version: 1.8.0.1746864777
+Release: 0%{?dist}
 
 License: BSL-1.0
 URL: https://github.com/%{name}/td
@@ -17,6 +17,7 @@ BuildRequires: gperf
 BuildRequires: cmake
 BuildRequires: gcc
 BuildRequires: java-devel
+BuildRequires: ccache
 
 Provides: bundled(sqlite) = 3.31.0
 
@@ -58,14 +59,14 @@ sed -e 's/"DEFAULT"/"PROFILE=SYSTEM"/g' -i tdnet/td/net/SslStream.cpp
     -DSYSCONF_INSTALL_DIR:PATH=%{_sysconfdir} \
     -DSHARE_INSTALL_PREFIX:PATH=%{_datadir} \
     -DBUILD_SHARED_LIBS:BOOL=ON \
+    -DCMAKE_INSTALL_LIBDIR:PATH=%{_libdir} \
     -DCMAKE_BUILD_TYPE=Release \
-    -DCMAKE_INSTALL_LIBDIR=%{_libdir} \
-    -DCMAKE_BUILD_TYPE=Release \
-    -DCMAKE_INSTALL_INCLUDEDIR=%{_includedir} \
-    -DCMAKE_INSTALL_BINDIR=%{_bindir} \
+    -DCMAKE_INSTALL_INCLUDEDIR:PATH=%{_includedir} \
+    -DCMAKE_INSTALL_BINDIR:PATH=%{_bindir} \
     -DTD_ENABLE_JNI:BOOL=ON \
     -DTD_ENABLE_DOTNET:BOOL=OFF \
     -DLIB_SUFFIX=64 \
+    -DTDE2E_INSTALL_INCLUDES:BOOL=ON \
     -DBUILD_SHARED_LIBS:BOOL=ON \
     -DTD_INSTALL_STATIC_LIBRARIES:BOOL=ON \
     -DTD_INSTALL_SHARED_LIBRARIES:BOOL=ON
@@ -74,6 +75,8 @@ sed -e 's/"DEFAULT"/"PROFILE=SYSTEM"/g' -i tdnet/td/net/SslStream.cpp
 
 %install
 %cmake_install
+install -Dm644 td/e2e/e2e_api.h "%{buildroot}%{_includedir}/td/e2e"
+install -Dm644 td/e2e/e2e_errors.h "%{buildroot}%{_includedir}/td/e2e"
 
 %files
 %license LICENSE_1_0.txt
@@ -89,3 +92,5 @@ sed -e 's/"DEFAULT"/"PROFILE=SYSTEM"/g' -i tdnet/td/net/SslStream.cpp
 
 %files static
 %{_libdir}/lib*.a
+
+
