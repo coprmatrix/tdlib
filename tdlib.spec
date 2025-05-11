@@ -78,6 +78,16 @@ sed -e 's/"DEFAULT"/"PROFILE=SYSTEM"/g' -i tdnet/td/net/SslStream.cpp
 install -Dm644 tde2e/td/e2e/e2e_api.h "%{buildroot}%{_includedir}/td/e2e/e2e_api.h"
 install -Dm644 tde2e/td/e2e/e2e_errors.h "%{buildroot}%{_includedir}/td/e2e/e2e_errors.h"
 
+shopt -s globstar
+for i in $(ls {td{tl,e2e,db,actor,utils},.}/td/**/*.h); do
+do
+    u="%{buildroot}%{_includedir}/${i#*/}"
+    if [ ! -f "${u}" ]
+    then
+        install -Dm644 "${i}" "${u}"
+    fi
+done
+
 %files
 %license LICENSE_1_0.txt
 %doc README.md CHANGELOG.md
