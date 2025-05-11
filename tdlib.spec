@@ -75,8 +75,8 @@ sed -e 's/"DEFAULT"/"PROFILE=SYSTEM"/g' -i tdnet/td/net/SslStream.cpp
 
 %install
 %cmake_install
-install -Dm644 tde2e/td/e2e/e2e_api.h "%{buildroot}%{_includedir}/td/e2e"
-install -Dm644 tde2e/td/e2e/e2e_errors.h "%{buildroot}%{_includedir}/td/e2e"
+install -Dm644 tde2e/td/e2e/e2e_api.h "%{buildroot}%{_includedir}/td/e2e/e2e_api.h"
+install -Dm644 tde2e/td/e2e/e2e_errors.h "%{buildroot}%{_includedir}/td/e2e/e2e_errors.h"
 
 %files
 %license LICENSE_1_0.txt
