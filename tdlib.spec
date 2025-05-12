@@ -23,7 +23,7 @@ Provides: bundled(sqlite) = 3.31.0
 
 # Building with default settings require at least 16 GB of free RAM.
 # Builds on ARM and other low-memory architectures are failing.
-ExclusiveArch: x86_64 aarch64
+#ExclusiveArch: x86_64 aarch64
 
 %description
 TDLib (Telegram Database library) is a cross-platform library for
