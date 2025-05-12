@@ -21,9 +21,18 @@ BuildRequires: ccache
 
 Provides: bundled(sqlite) = 3.31.0
 
-# Building with default settings require at least 16 GB of free RAM.
-# Builds on ARM and other low-memory architectures are failing.
-#ExclusiveArch: x86_64 aarch64
+# Telegram Desktop require more than 8 GB of RAM on linking stage.
+# Disabling all low-memory architectures.
+%if %{undefined arm64}
+  %define arm64 aarch64
+%endif
+%if %{undefined x86_64}
+  %define x86_64 x86_64
+%endif
+%if %{undefined riscv64}
+  %define riscv64 riscv64
+%endif
+ExclusiveArch: %x86_64 %arm64 ppc64le %riscv64
 
 %description
 TDLib (Telegram Database library) is a cross-platform library for
